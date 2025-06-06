@@ -27,11 +27,12 @@ jobs:
 
           az functionapp create \
             --name "${{ github.event.inputs.functionAppName }}" \
-            --resource-group MyResourceGroup \
+            --resource-group testapp \
             --consumption-plan-location eastus \
             --runtime python \
+            --name safetychain-test1 \
             --functions-version 4 \
-            --storage-account "${{ secrets.STORAGE_ACCOUNT }}" \
+            --storage-account storagefunction1 \
             --os-type Linux
 
           echo "Function App created successfully!"
