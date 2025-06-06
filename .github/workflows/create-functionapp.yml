@@ -1,0 +1,34 @@
+name: Create Azure Function App
+
+on:
+  workflow_dispatch:
+    inputs:
+      functionAppName:
+        description: 'Name of the Function App to create'
+        required: true
+        type: string
+
+jobs:
+  create-function-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Create Azure Function App
+        run: |
+          echo "Creating Function App named: ${{ github.event.inputs.functionAppName }}"
+
+          az functionapp create \
+            --name "${{ github.event.inputs.functionAppName }}" \
+            --resource-group "${{ secrets.RESOURCE_GROUP }}" \
+            --consumption-plan-location "CentralIndia" \
+            --runtime "node" \
+            --functions-version 4 \
+            --storage-account "${{ secrets.STORAGE_ACCOUNT }}"
