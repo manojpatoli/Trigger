@@ -20,13 +20,16 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Register Microsoft.Web provider
+        run: |
+             echo "Registering Microsoft.Web resource provider..."
+             az provider register --namespace Microsoft.Web
+
 
       - name: Create Azure Function App
         run: |
-          echo "Creating Function App named: ${{ github.event.inputs.functionAppName }}"
-
+          echo "Creating Function App named: safetychain-test1"
           az functionapp create \
-            --name "${{ github.event.inputs.functionAppName }}" \
             --resource-group testapp \
             --consumption-plan-location eastus \
             --runtime python \
