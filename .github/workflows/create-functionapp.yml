@@ -27,9 +27,9 @@ jobs:
 
           az functionapp create \
             --name "${{ github.event.inputs.functionAppName }}" \
-            --resource-group "${{ secrets.RESOURCE_GROUP }}" \
-            --consumption-plan-location "${{ github.event.inputs.location }}" \
-            --runtime node \
+            --resource-group MyResourceGroup \
+            --consumption-plan-location eastus \
+            --runtime python \
             --functions-version 4 \
             --storage-account "${{ secrets.STORAGE_ACCOUNT }}" \
             --os-type Linux
