@@ -28,7 +28,8 @@ jobs:
           az functionapp create \
             --name "${{ github.event.inputs.functionAppName }}" \
             --resource-group "${{ secrets.RESOURCE_GROUP }}" \
-            --consumption-plan-location "CentralIndia" \
-            --runtime "node" \
+            --plan "${{ secrets.APP_SERVICE_PLAN }}" \
+            --runtime node \
             --functions-version 4 \
-            --storage-account "${{ secrets.STORAGE_ACCOUNT }}"
+            --storage-account "${{ secrets.STORAGE_ACCOUNT }}" \
+            --consumption-plan-location CentralIndia
