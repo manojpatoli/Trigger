@@ -30,7 +30,6 @@ jobs:
             --resource-group testapp \
             --consumption-plan-location eastus \
             --runtime python \
-            --name safetychain-test1 \
             --functions-version 4 \
             --storage-account storagefunction1 \
             --os-type Linux
