@@ -28,13 +28,15 @@ jobs:
 
       - name: Create Azure Function App
         run: |
-          echo "Creating Function App named: safetychain-test1"
-          az functionapp create \
-            --resource-group testapp \
-            --consumption-plan-location eastus \
-            --runtime python \
-            --functions-version 4 \
-            --storage-account storagefunction1 \
-            --os-type Linux
+         echo "Creating Function App named: safetychain-test1"
+         az functionapp create \
+           --resource-group testapp \
+           --consumption-plan-location eastus \
+           --runtime python \
+           --functions-version 4 \
+           --name safetychain-test1 \
+           --storage-account storagefunction1 \
+           --os-type Linux
 
-          echo "Function App created successfully!"
+         echo "Function App created successfully!"
+
