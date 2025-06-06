@@ -7,12 +7,7 @@ on:
         description: 'Name of the Function App to create'
         required: true
         type: string
-      location:
-        description: 'Azure location (region)'
-        required: false
-        default: 'CentralIndia'
-        type: string
-
+     
 jobs:
   create-function-app:
     runs-on: ubuntu-latest
