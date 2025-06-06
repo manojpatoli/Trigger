@@ -7,6 +7,11 @@ on:
         description: 'Name of the Function App to create'
         required: true
         type: string
+      location:
+        description: 'Azure location (region)'
+        required: false
+        default: 'CentralIndia'
+        type: string
 
 jobs:
   create-function-app:
@@ -28,8 +33,10 @@ jobs:
           az functionapp create \
             --name "${{ github.event.inputs.functionAppName }}" \
             --resource-group "${{ secrets.RESOURCE_GROUP }}" \
-            --plan "${{ secrets.APP_SERVICE_PLAN }}" \
+            --consumption-plan-location "${{ github.event.inputs.location }}" \
             --runtime node \
             --functions-version 4 \
             --storage-account "${{ secrets.STORAGE_ACCOUNT }}" \
-            --consumption-plan-location CentralIndia
+            --os-type Linux
+
+          echo "Function App created successfully!"
